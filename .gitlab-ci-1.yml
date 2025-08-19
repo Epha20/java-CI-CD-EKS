@@ -1,0 +1,15 @@
+stages:
+  - code_quality_test
+  - build_trigger
+
+code_quality_test:
+  image: sonarsource/sonar-scanner-cli
+  stage: code_quality_test
+  script:
+    - sonar-scanner -Dsonar.projectKey=maven-build -Dsonar.sources=. -Dsonar.host.url="http://sonarqube:9000" -Dsonar.login="sonarqube-token"
+
+trigger_build:
+  stage: build_trigger
+  script:
+    - echo "Jenkins build triggered"
+    - curl -X POST http://jenkins:8080/job/maven-build/build?token=jenkins-trigger-token
