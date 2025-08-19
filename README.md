@@ -23,7 +23,7 @@ This project implements a secure and automated CI/CD pipeline for a Java-app
 ### 2. Jenkins Pipeline
 
 1. **Checkout**: Pull latest code
-2. **Build and Analyze**: Run `mvn clean package` with `sonarqube`
+2. **Build and Analyze**: Run `mvn clean package` and analyzes with `sonarqube`
 3. **Docker Build**: Create container image
 4. **Trivy Scan**: Scan image for CVEs
 5. **Push to Harbor**: Save image to private registry
