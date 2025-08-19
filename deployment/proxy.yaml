@@ -1,0 +1,18 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: java-app-proxy
+spec:
+  virtualhost:
+    fqdn: java-app.mycompany.com
+    tls:
+      secretName: proxy-secret
+  routes:
+    - conditions:
+      - prefix: /
+      pathRewritePolicy:
+        replacePrefix: 
+        - replacement: /
+      services:
+        - name: java-app-service
+          port: 8080
